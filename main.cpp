@@ -3,19 +3,19 @@ using namespace std;
 
 int main ()
 {
-    int n; // O(1)
-    cin >> n; // O(1)
+    // vector<int> n;
+    // vector<int> n(10);
+    // vector<int> n(10, 55);
+    // vector<int> n2 (n);
+    
+    // int arr[5] = {4, 1, 1, 4, 8};
+    // vector<int> arrVect(arr, arr+5);
+    // vector<int> arrVect = {4, 1, 1, 4, 7};
 
-    for (int i = 1; i <= n; i++) // O(N)
-    {
-        for (int j = 1; j <= n; j*=2) // O(logN + 1) -> O(logN)
-        {
-            cout << "Hello" << endl;
-        }
-    }
+    // for (int i = 0; i < arrVect.size(); i++)
+    // {
+    //     cout << arrVect[i] << endl;
+    // }
 
-    return 0; // O(1)
-
-    // Linearithimic Complexity: Linear Complexity, Nested with Logarithimic Complexity
-    // Ans: O(NlogN)
+    return 0;
 }
