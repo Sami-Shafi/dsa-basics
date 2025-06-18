@@ -3,22 +3,19 @@ using namespace std;
 
 int main ()
 {
-    int n; // O(1)
-    cin >> n; // O(1)
+    int n, m; // O(1)
+    cin >> n >> m; // O(1)
 
-    for (int i = 1; i <= n; i*=2) // O(log2>n) -> O(log(n))
-    {
-        cout << i << " ";
-    }
-
-    cout << endl; // O(1)
-
-    for (int i = n; i >= 1; i/=3) // O(log3>n) -> O(log(n))
-    {
-        cout << i << " ";
+    for (int i = 0; i < n; i++) { // O(n)
+        for (int j = 0; j < m; j++) // O(m)
+        {
+            cout << "Hello" << endl;
+        }
+        
     }
 
     return 0; // O(1)
 
-    // Logarithmic Complexity: when the increment/decrement has multiplication or division
+    // Quadratic Complexity: Usually happens in nested loops.. two Orders will get multiplied with each other.
+    // Ans: O(n*m)
 }
