@@ -3,19 +3,24 @@ using namespace std;
 
 int main ()
 {
-    // vector<int> n;
-    // vector<int> n(10);
-    // vector<int> n(10, 55);
-    // vector<int> n2 (n);
-    
-    // int arr[5] = {4, 1, 1, 4, 8};
-    // vector<int> arrVect(arr, arr+5);
-    // vector<int> arrVect = {4, 1, 1, 4, 7};
+    vector<int> n1 = {1,2,3,4,69,69,69,5};
+    vector<int> n2 = {100, 200, 300};
 
-    // for (int i = 0; i < arrVect.size(); i++)
+    // n1.insert(n1.begin()+2, {100, 200, 300});
+    // n1.insert(n1.begin()+2, n2.begin(), n2.end());
+
+    // n1.erase(n1.begin()+2);
+
+    // replace(n1.begin(), n1.end(), 69, 143);
+
+    // find function will return an iterator. It cannot find the index, it can only say whether a value exists inside the vector or not.
+    // vector<int>:: iterator sos = find(n1.begin(), n1.end(), 4);
+    // cout << (sos!=n1.end() ? "Found!" : "Not Found!");
+
+    // for (int num : n1)
     // {
-    //     cout << arrVect[i] << endl;
+    //     cout << num << " ";
     // }
-
+    
     return 0;
 }
