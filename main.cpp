@@ -1,26 +1,56 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Given 2 numbers N and Q, an array A of N number and Q number of pairs L, R. For each query Q print a single line that contains the summation of all numbers from index L to index R.
+
+// Input
+// First line contains two numbers N, Q (1≤N,Q≤105) where N is number of elements in A and Q is number of query pairs.
+
+// Second line contains N numbers(1≤Ai≤109).
+
+// Next Q lines contains L,R (1≤L≤R≤N).
+
+// Output
+// For each query Q print a single line that contains the summation of all numbers from index L to index R.
+
+// Input
+// 6 3
+// 6 4 2 7 2 7
+// 1 3
+// 3 6
+// 1 6
+
+// Output
+// 12
+// 18
+// 28
+
 int main ()
 {
-    vector<int> n1 = {1,2,3,4,69,69,69,5};
-    vector<int> n2 = {100, 200, 300};
+    int length, cases;
+    cin >> length >> cases;
+    int nums[length], sum = 0;
 
-    // n1.insert(n1.begin()+2, {100, 200, 300});
-    // n1.insert(n1.begin()+2, n2.begin(), n2.end());
+    for (int i = 0; i < length; i++)
+    {
+        cin >> nums[i];
+    }
 
-    // n1.erase(n1.begin()+2);
+    while (cases)
+    {
+        int fn, ln, sum = 0;
+        cin >> fn >> ln;
 
-    // replace(n1.begin(), n1.end(), 69, 143);
+        for (int i = fn; i <= ln; i++)
+        {
+            sum += nums[i-1];
+        }
+        
+        cout << sum << endl;
 
-    // find function will return an iterator. It cannot find the index, it can only say whether a value exists inside the vector or not.
-    // vector<int>:: iterator sos = find(n1.begin(), n1.end(), 4);
-    // cout << (sos!=n1.end() ? "Found!" : "Not Found!");
-
-    // for (int num : n1)
-    // {
-    //     cout << num << " ";
-    // }
+        cases--;
+    }
+        
     
     return 0;
 }
