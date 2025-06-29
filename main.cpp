@@ -7,22 +7,18 @@ class Node {
         int val;
         Node* next;
 
-    
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
 
 };
 
 int main ()
 {
-    Node a, b, c;
-    a.val = 10;
-    b.val = 20;
-    c.val = 30;
+    Node a(10), b(20), c(30);
     a.next = &b;
     b.next = &c;
-    c.next = NULL;
-
-    //testing the linked list
-    cout << a.val << " " << a.next->val << " " << ((a.next)->next)->val;
     
     return 0;
 }
