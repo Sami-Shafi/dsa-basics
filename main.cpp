@@ -20,11 +20,18 @@ int main ()
     Node* headNode = new Node(10);
     Node* secondNode = new Node(20);
     Node* thirdNode = new Node(30);
+    Node* fourthNode = new Node(40);
 
     headNode->nextNode = secondNode;
     secondNode->nextNode = thirdNode;
+    thirdNode->nextNode = fourthNode;
 
-    cout << headNode->val << " " << headNode->nextNode->val << " ";
+    // we need this for looping to keep the head pointer safe.
+    Node* mover = headNode;
+    while (mover != NULL) {
+        cout << mover->val << endl;
+        mover = mover->nextNode;
+    }
     
     return 0;
 }
