@@ -14,10 +14,11 @@ class Node {
 
 };
 
-void insert_at_head(Node* headNode, int val)
+void insert_at_head(Node* &headNode, int val)
 {
     Node* newNode = new Node(val);
     newNode->nextNode = headNode;
+    headNode = newNode;
 }
 
 int main ()
