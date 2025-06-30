@@ -14,24 +14,19 @@ class Node {
 
 };
 
+void insert_at_head(Node* headNode, int val)
+{
+    Node* newNode = new Node(val);
+    newNode->nextNode = headNode;
+}
+
 int main ()
 {
-    // recap of dynamic: when you create anything wiht new keyword, it stores it into the heap memory and you have to assign it to a pointer var of same type. To access it, you can de-ref the pointer var.
     Node* headNode = new Node(10);
-    Node* secondNode = new Node(20);
-    Node* thirdNode = new Node(30);
-    Node* fourthNode = new Node(40);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
 
-    headNode->nextNode = secondNode;
-    secondNode->nextNode = thirdNode;
-    thirdNode->nextNode = fourthNode;
-
-    // we need this for looping to keep the head pointer safe.
-    Node* mover = headNode;
-    while (mover != NULL) {
-        cout << mover->val << endl;
-        mover = mover->nextNode;
-    }
+    insert_at_head(headNode, 100);
     
     return 0;
 }
