@@ -14,27 +14,18 @@ class Node {
 
 };
 
-void insert_at_head(Node* &headNode, int val)
+
+void insert_at_pos(Node* headNode, int index, int val)
 {
     Node* newNode = new Node(val);
-    newNode->nextNode = headNode;
-    headNode = newNode;
-}
-
-void insert_at_tail(Node* &headNode, int val)
-{
-    Node* newNode = new Node(val);
-
-    if (headNode == NULL) {
-        headNode = newNode;
-        return;
-    }
 
     Node* tmp = headNode;
-    while (tmp->nextNode != NULL) {
+    for (int i = 0; i < index-1; i++) {
         tmp = tmp->nextNode;
     }
+    newNode->nextNode = tmp->nextNode;
     tmp->nextNode = newNode;
+
 }
 
 void print_ll(Node* headNode)
@@ -48,13 +39,14 @@ void print_ll(Node* headNode)
 
 int main ()
 {
-    Node* headNode = NULL;
+    Node* headNode = new Node (10);
+    Node* a = new Node (20);
+    Node* b = new Node (30);
 
-    insert_at_tail(headNode, 20);
-    insert_at_tail(headNode, 30);
-    insert_at_head(headNode, 100);
-    insert_at_tail(headNode, 50);
-    insert_at_tail(headNode, 70);
+    headNode->nextNode = a;
+    a->nextNode = b;
+
+    insert_at_pos(headNode, 2, 100);
     print_ll(headNode);
     
     return 0;
