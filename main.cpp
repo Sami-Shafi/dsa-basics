@@ -28,6 +28,21 @@ void insert_at_pos(Node* headNode, int index, int val)
 
 }
 
+void insert_at_tail(Node* &headNode, Node* &tailNode, int val)
+{
+    Node* newNode = new Node(val);
+
+    if (headNode == NULL) {
+        headNode = newNode;
+        tailNode = newNode;
+        return;
+    }
+
+    tailNode->nextNode = newNode;
+    tailNode = tailNode->nextNode;
+
+}
+
 void print_ll(Node* headNode)
 {
     Node* tmp = headNode;
@@ -41,13 +56,17 @@ int main ()
 {
     Node* headNode = new Node (10);
     Node* a = new Node (20);
-    Node* b = new Node (30);
+    Node* tailNode = new Node (30);
 
     headNode->nextNode = a;
-    a->nextNode = b;
+    a->nextNode = tailNode;
 
-    insert_at_pos(headNode, 2, 100);
+    insert_at_tail(headNode, tailNode, 100);
+    insert_at_tail(headNode, tailNode, 200);
+    insert_at_tail(headNode, tailNode, 300);
+    insert_at_tail(headNode, tailNode, 250);
     print_ll(headNode);
+    cout << "Tail: " << tailNode->val;
     
     return 0;
 }
