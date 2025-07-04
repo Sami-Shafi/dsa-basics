@@ -118,7 +118,9 @@ int main ()
         insert_at_tail(headNode, tailNode, val);
     }
     cout << tailNode->val << endl;
+    delete_tail(headNode, tailNode);
     print_ll(headNode);
+    cout << tailNode->val << endl;
     
     return 0;
 }
