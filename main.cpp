@@ -69,6 +69,21 @@ void insert_at_tail(Node* &headNode, Node* &tailNode, int val)
 
 }
 
+void delete_tail(Node* headNode, Node* &tailNode)
+{
+    Node* tmp = headNode;
+    while (tmp->nextNode->nextNode != NULL) {
+        tmp = tmp->nextNode;
+    }
+
+    Node* deleteNode = tmp->nextNode;
+    tmp->nextNode = NULL;
+
+    delete deleteNode;
+    tailNode = tmp;
+
+}
+
 void print_ll(Node* headNode)
 {
     Node* tmp = headNode;
@@ -102,7 +117,8 @@ int main ()
         }
         insert_at_tail(headNode, tailNode, val);
     }
-    print_ll_rev(headNode);
+    cout << tailNode->val << endl;
+    print_ll(headNode);
     
     return 0;
 }
