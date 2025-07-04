@@ -52,21 +52,31 @@ void print_ll(Node* headNode)
     }
 }
 
+void print_ll_rev(Node* tmp)
+{
+    if (tmp == NULL) {
+        return;
+    }
+
+    print_ll_rev(tmp->nextNode);
+    cout << tmp->val << endl;
+}
+
 int main ()
 {
-    Node* headNode = new Node (10);
-    Node* a = new Node (20);
-    Node* tailNode = new Node (30);
+    Node* headNode = NULL;
+    Node* tailNode = NULL;
 
-    headNode->nextNode = a;
-    a->nextNode = tailNode;
-
-    insert_at_tail(headNode, tailNode, 100);
-    insert_at_tail(headNode, tailNode, 200);
-    insert_at_tail(headNode, tailNode, 300);
-    insert_at_tail(headNode, tailNode, 250);
-    print_ll(headNode);
-    cout << "Tail: " << tailNode->val;
+    int val;
+    while (true)
+    {
+        cin >> val;
+        if (val == -1) {
+            break;
+        }
+        insert_at_tail(headNode, tailNode, val);
+    }
+    print_ll_rev(headNode);
     
     return 0;
 }
