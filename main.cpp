@@ -103,6 +103,19 @@ void print_ll_rev(Node* tmp)
     cout << tmp->val << endl;
 }
 
+void sort_ll(Node* &headNode) {
+    for (Node* i = headNode; i->nextNode != NULL; i = i->nextNode)
+    {
+        for (Node* j = i->nextNode; j != NULL; j = j->nextNode)
+        {
+            if(i->val > j->val) {
+                swap(i->val, j->val);
+            }
+        }
+        
+    }
+}
+
 int main ()
 {
     Node* headNode = NULL;
@@ -117,10 +130,9 @@ int main ()
         }
         insert_at_tail(headNode, tailNode, val);
     }
-    cout << tailNode->val << endl;
-    delete_tail(headNode, tailNode);
+
+    sort_ll(headNode);
     print_ll(headNode);
-    cout << tailNode->val << endl;
     
     return 0;
 }
