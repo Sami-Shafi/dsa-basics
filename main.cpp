@@ -14,6 +14,19 @@ class Node {
 
 };
 
+void insert_at_head(Node* &headNode, int val)
+{
+    Node* newNode = new Node(val);
+    newNode->nextNode = headNode;
+    headNode = newNode;
+}
+
+void delete_head(Node* &headNode)
+{
+    Node* deleteNode = headNode;
+    headNode = headNode->nextNode;
+    delete deleteNode;
+}
 
 void insert_at_pos(Node* headNode, int index, int val)
 {
@@ -26,6 +39,19 @@ void insert_at_pos(Node* headNode, int index, int val)
     newNode->nextNode = tmp->nextNode;
     tmp->nextNode = newNode;
 
+}
+
+void delete_pos(Node* headNode, int index)
+{
+    Node* tmp = headNode;
+    for (int i = 0; i < index-1; i++) {
+        tmp = tmp->nextNode;
+    }
+
+    Node* deleteNode = tmp->nextNode;
+    tmp->nextNode = deleteNode->nextNode;
+
+    delete deleteNode;
 }
 
 void insert_at_tail(Node* &headNode, Node* &tailNode, int val)
