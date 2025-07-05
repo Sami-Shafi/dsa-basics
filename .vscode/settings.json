@@ -8,6 +8,9 @@
 		"vector": "cpp",
 		"valarray": "cpp",
 		"new": "cpp",
-		"ostream": "cpp"
+		"ostream": "cpp",
+		"chrono": "cpp",
+		"random": "cpp",
+		"limits": "cpp"
 	}
 }
