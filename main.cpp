@@ -1,140 +1,138 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// You are given a doubly linked list of unique string values. These strings refer to web addresses without any spaces. You will be given Q queries. In each query you will be given some commands. Type of commands are -
+// You have a doubly linked list which is empty initially. Then you will be given Q queries. In each query you will be given two values X and V.
 
-// visit address - You need to go to that address from where you are in that list and print that address if it is in the list. Otherwise print "Not Available".
-// next - You need to go to the next address from where you are in that list and print that address if it is in the list. Otherwise print "Not Available".
-// prev - You need to go to the previous address from where you are in that list and print that address if it is in the list. Otherwise print "Not Available".
-// One more thing, if the address isn't available make sure you don't move from your current position. You are at the head initially.
+// You need to insert the value V at index X. Assume that index starts from 0.
+// After that for each query you need to print the linked list from left to right and right to left.
+// If the index is invalid, then print "Invalid".
 
-// Note: You can use Singly/Doubly Linked List or STL List to solve this problem.
+// Note: You must use Doubly Linked List, otherwise you will not get marks.
 
 // Input Format
-// First line will contain the values of the doubly linked list, and will terminate with the string "end".
-// Second line will contain Q.
-// Next Q lines will contain the commands. It is guranteed that you will get "visit address" command at first which will contain a valid address. It will not contain valid address everytime!
+// First line will contain Q.
+// Next Q lines will contain X and V.
 
 // Constraints
-// 1 <= N <= 1000; Here N is the maximum number of nodes of the linked list.
 // 1 <= Q <= 1000;
-// 1 <= |Address| <= 100; Here |Address| is the length of the string address.
+// 0 <= X <= 1000;
+// 0 <= V <= 1000
 
 // Output Format
-// For each query output as asked.
+// For each query print the linked list from left to right and right to left or print "Invalid" as asked.
+// Print "L -> " before printing the linked list from left to right.
+// Print "R -> " before printing the linked list from right to left.
 
-// class Node {
+class Node {
 
-//     public:
-//         int val;
-//         Node* nextNode;
-//         Node* prevNode;
+    public:
+        int val;
+        Node* nextNode;
+        Node* prevNode;
 
-//     Node(int val) {
-//         this->val = val;
-//         this->nextNode = NULL;
-//         this->prevNode = NULL;
-//     }
+    Node(int val) {
+        this->val = val;
+        this->nextNode = NULL;
+        this->prevNode = NULL;
+    }
 
-// };
+};
 
-// void checkPalindrom(Node* head, Node* tail) {
-//     Node* i = head;
-//     Node* j = tail;
-//     bool isPalindrom = true;
+void buildLink(Node* prevIndexNode, Node* newNode, Node* &tail) {
+    if(prevIndexNode->nextNode!=NULL) {
+        newNode->nextNode = prevIndexNode->nextNode;
+        newNode->prevNode = prevIndexNode;
+        newNode->nextNode->prevNode = newNode;
+        prevIndexNode->nextNode = newNode;
+    }else {
+        prevIndexNode->nextNode = newNode;
+        newNode->prevNode = prevIndexNode;
+        tail=newNode;
+    }
+}
+
+void zigzagPrint(Node* head, Node* tail) {
+
+    Node* tmp = head;
+    cout << "L -> ";
+    for (tmp; tmp != NULL; tmp=tmp->nextNode)
+    {
+        cout << tmp->val << " ";
+    }
+    cout << endl;
     
-//     for (i, j; i != j && j->nextNode != i; i=i->nextNode, j=j->prevNode)
-//     {
-//         if(i->val != j->val) {
-//             isPalindrom = false;
-//         }
-//     }
-
-//     if(isPalindrom) {
-//         cout << "YES";
-//     }else {
-//         cout << "NO";
-//     }
-// }
+    Node* tmp2 = tail;
+    cout << "R -> ";
+    for (tmp2; tmp2 != NULL; tmp2=tmp2->prevNode)
+    {
+        cout << tmp2->val << " ";
+    }
+    cout << endl;
+    
+}
 
 int main ()
 {
 
-    // Node* head = NULL;
-    // Node* tail = NULL;
-
-    // int val;
-    // while(cin >> val) {
-    //     if(val==-1) {
-    //         break;
-    //     }
-
-    //     Node* newNode = new Node(val);
-    //     if(head==NULL) {
-    //         head = newNode;
-    //         tail = newNode;
-    //     }else {
-    //         tail->nextNode = newNode;
-    //         newNode->prevNode = tail;
-    //         tail = newNode;
-    //     }
-    // }
-
-    // checkPalindrom(head, tail);
-
-    list<string> sentence;
-
-    string val;
-    while (cin>>val) {
-        if(val == "end") {
-            break;
-        }
-        sentence.push_back(val);
-    }
+    Node* head = NULL;
+    Node* tail = NULL;
 
     int q;
     cin >> q;
 
-    list<string>::iterator i;
-    while (q--) {
-        string key1, key2;
-        cin >> key1;
+    while (q--)
+    {
+        int idx, val;
+        cin >> idx >> val;
 
-        if(key1 == "visit") {
-            cin >> key2;
+        Node* newNode = new Node(val);
 
-            auto target = find(sentence.begin(), sentence.end(), key2);
-
-            if(target == sentence.end()) {
-                cout << "Not Available" << endl;
+        if(idx == 0) {
+            if(head == NULL) {
+                head = newNode;
+                tail = newNode;
+            }else {
+                head->prevNode = newNode;
+                newNode->nextNode = head;
+                head = newNode;
+            }
+            zigzagPrint(head, tail);
+            continue;
+        }else {
+            if(head == NULL) {
+                cout << "Invalid" << endl;
                 continue;
             }
 
-            i=target;
-            cout << *i << endl;
-        }
-
-        if(key1 == "prev") {
-            if(i == sentence.begin()) {
-                cout << "Not Available" << endl;
+            if(idx == 1) {
+                buildLink(head, newNode, tail);
+                zigzagPrint(head, tail);
                 continue;
             }
 
-            i--;
-            cout << *i << endl;
-        }
+            int step = 0;
+            Node* tmp = head;
+            bool isInvalid = false;
+            while (step < idx-1)
+            {
+                if(tmp->nextNode == NULL) {
+                    cout << "Invalid" << endl;
+                    isInvalid = true;
+                    break;
+                }
 
-        if(key1 == "next") {
-            auto nextI = next(i);
-            if(nextI == sentence.end()) {
-                cout << "Not Available" << endl;
-                continue;
+                tmp = tmp->nextNode;
+                step++;
             }
 
-            i++;
-            cout << *i << endl;
+            if(isInvalid && tmp->nextNode == NULL) {
+                continue;
+            }
+            buildLink(tmp, newNode, tail);
+            zigzagPrint(head, tail);
         }
+        
     }
-    
+
     return 0;
 }

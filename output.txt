@@ -1,7 +1,8 @@
-s
-t
-Not Available
-u
-z
-Not Available
-y
+Invalid
+L -> 10 
+R -> 10 
+L -> 10 20 
+R -> 20 10 
+Invalid
+L -> 10 20 30 
+R -> 30 20 10 
