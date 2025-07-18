@@ -1,39 +1,78 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// You will be given a linked list of integer values as input. You need to remove duplicate values from the linked list and finally print the linked list in ascending order.
+// You need to take a doubly linked list of integer value as input. You need to tell if the doubly linked list forms a palindrome or not.
 
-// Note: You need to solve this using STL List, otherwise you will not get marks.
+// Note: You need to solve this using Doubly Linked List, otherwise you will not get marks.
 
 // Input Format
-// First line will contain the values of the linked list, and will terminate with -1.
+// Input will contain the values of the doubly linked list, and will terminate with -1.
 
 // Constraints
-// 1 <= N <= 1000; Here N is the maximum number of nodes of the linked list.
+// 1 <= N <= 10^6; Here N is the maximum number of nodes of the linked list.
 // 0 <= V <= 1000; Here V is the value of each node.
 
 // Output Format
-// Output the final linked list where there will be no duplicate values.
+// Output "YES" if it forms a palindrom otherwise output "NO".
 
-int main ()
-{
-    list<int> list;
+class Node {
 
-    int val;
-    while (cin >> val)
+    public:
+        int val;
+        Node* nextNode;
+        Node* prevNode;
+
+    Node(int val) {
+        this->val = val;
+        this->nextNode = NULL;
+        this->prevNode = NULL;
+    }
+
+};
+
+void checkPalindrom(Node* head, Node* tail) {
+    Node* i = head;
+    Node* j = tail;
+    bool isPalindrom = true;
+    
+    for (i, j; i != j && j->nextNode != i; i=i->nextNode, j=j->prevNode)
     {
-        if (val != -1) {
-            list.push_back(val);
+        if(i->val != j->val) {
+            isPalindrom = false;
         }
     }
 
-    list.sort();
-    list.unique();
-
-    for (int node : list) {
-        cout << node << " ";
+    if(isPalindrom) {
+        cout << "YES";
+    }else {
+        cout << "NO";
     }
-    cout << endl;
+}
+
+int main ()
+{
+
+    Node* head = NULL;
+    Node* tail = NULL;
+
+    int val;
+    while(cin >> val) {
+        if(val==-1) {
+            break;
+        }
+
+        Node* newNode = new Node(val);
+        if(head==NULL) {
+            head = newNode;
+            tail = newNode;
+        }else {
+            tail->nextNode = newNode;
+            newNode->prevNode = tail;
+            tail = newNode;
+        }
+    }
+
+    checkPalindrom(head, tail);
     
     return 0;
 }
