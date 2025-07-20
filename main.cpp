@@ -3,26 +3,26 @@ using namespace std;
 
 class manualStack {
     public:
-        vector<int> arr;
+        list<int> list;
 
         void push(int val) {
-            arr.push_back(val);
+            list.push_back(val);
         }
 
         void pop() {
-            arr.pop_back();
+            list.pop_back();
         }
 
         int top() {
-            return arr.back();
+            return list.back();
         }
 
         int size() {
-            return arr.size();
+            return list.size();
         }
 
         bool empty() {
-            return arr.empty();
+            return list.empty();
         }
 };
 
