@@ -1,36 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class manualStack {
-    public:
-        list<int> list;
-
-        void push(int val) {
-            list.push_back(val);
-        }
-
-        void pop() {
-            list.pop_back();
-        }
-
-        int top() {
-            return list.back();
-        }
-
-        int size() {
-            return list.size();
-        }
-
-        bool empty() {
-            return list.empty();
-        }
-};
-
 int main ()
 {
-    // no need to create 'new' / dynamic stack because we do not create stacks in any inner functions
-    // unlike linkedLists
-    manualStack st;
+    stack<int> st;
 
     // take input
     int n, val;
