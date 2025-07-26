@@ -73,7 +73,7 @@ public:
 
     int front() {
         if (head != NULL) return head->val;
-        return -1; // or throw error
+        return -1;
     }
 
     bool empty() {
