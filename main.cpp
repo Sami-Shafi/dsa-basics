@@ -3,23 +3,22 @@ using namespace std;
 
 int main ()
 {
-    stack<int> st;
-
-    // take input
+    queue<int> q;
     int n, val;
     cin >> n;
-    for (int i = 0; i < n; i++)
+
+    while (n--)
     {
         cin >> val;
-        st.push(val);
+        q.push(val);
     }
     
-    // output stack
-    while (!st.empty())
+    while (!q.empty())
     {
-        cout << st.top() << endl;
-        st.pop();
+        cout << q.front() << endl;
+        q.pop();
     }
+    
     
     return 0;
 }
