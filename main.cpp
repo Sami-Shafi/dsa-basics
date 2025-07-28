@@ -16,14 +16,14 @@ class Node {
 
 };
 
-void preorder(Node* root) {
+void inorder(Node* root) {
     if (root == NULL) {
         return;
     }
 
+    inorder(root->left);
     cout << root-> val << endl;
-    preorder(root->left);
-    preorder(root->right);
+    inorder(root->right);
 }
 
 int main ()
@@ -41,7 +41,7 @@ int main ()
     b->left = d;
     b->right = e;
 
-    preorder(root);
+    inorder(root);
     
     return 0;
 }
