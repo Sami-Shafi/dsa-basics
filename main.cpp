@@ -16,14 +16,21 @@ class Node {
 
 };
 
-void inorder(Node* root) {
-    if (root == NULL) {
-        return;
-    }
+void level_order(Node* root) {
+    queue<Node*> q;
+    q.push(root);
 
-    inorder(root->left);
-    inorder(root->right);
-    cout << root-> val << endl;
+    while (!q.empty())
+    {
+        Node* frontNode = q.front();
+        q.pop();
+        cout << frontNode->val << " ";
+        if(frontNode->left)
+            q.push(frontNode->left);
+        if(frontNode->right)
+            q.push(frontNode->right);
+    }
+    
 }
 
 int main ()
@@ -41,7 +48,7 @@ int main ()
     b->left = d;
     b->right = e;
 
-    inorder(root);
+    level_order(root);
     
     return 0;
 }
