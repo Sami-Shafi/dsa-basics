@@ -20,31 +20,26 @@ Node* input_tree() {
     int val;
     cin >> val;
     Node* root = new Node(val);
-    queue<Node*> q;
+    queue<Node *> q;
     q.push(root);
 
     while (!q.empty())
     {
-        Node* frontNode = q.front();
+        Node* f = q.front();
         q.pop();
 
-        int leftVal, rightVal;
-        cin >> leftVal >> rightVal;
-        Node* leftNode, *rightNode;
-
-        if(leftVal != -1) {
-            frontNode->left  = new Node(leftVal);
+        int l, r;
+        cin >> l >> r;
+        if(l != -1) {
+            f->left = new Node(l);
+            q.push(f->left);
         }
-            
-        if(rightVal != -1) {
-            frontNode->right = new Node(rightVal);
+        if(r != -1) {
+            f->right = new Node(r);
+            q.push(f->right);
         }
-
-        if(frontNode->left)
-            q.push(frontNode->left);
-        if(frontNode->right)
-            q.push(frontNode->right);
     }
+    
     return root;
 }
 
@@ -84,7 +79,8 @@ int count_Nodes(Node* root) {
 int main ()
 {
     Node* root = input_tree();
-    cout << count_Nodes(root);
+    cout << count_Nodes(root) << endl;
+    level_order(root);
     
     return 0;
 }
