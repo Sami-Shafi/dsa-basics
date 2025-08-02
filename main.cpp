@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// You will be given a binary tree as input in level order. Also you will be given a level X. You need to print all the node's values in that level from left to right. Assume that level starts from 0.
+// You will be given a binary tree as input in level order. You need to print the outer side of the binary tree. See the sample input output for more clarifications. You need to print from the left most leaf node to right most leaf node.
 
 class Node {
 
@@ -49,56 +49,46 @@ Node* input_tree() {
     return root;
 }
 
-queue<pair<Node*, int>> level_order(Node* root) {
-    queue<pair<Node*, int>> q;
-    queue<pair<Node*, int>> q2;
-    q.push({root, 0});
-    q2.push({root, 0});
-
-    while (!q.empty())
-    {
-        Node* frontNode = q.front().first;
-        int level = q.front().second;
-
-        q.pop();
-        
-        if(frontNode->left) {
-            q.push({frontNode->left, level+1});
-            q2.push({frontNode->left, level+1});
-        }
-        if(frontNode->right) {
-            q.push({frontNode->right, level+1});
-            q2.push({frontNode->right, level+1});
-        }
-    }
+void left_recur(Node* root) {
+    if(!root)
+        return;
     
-    return q2;
+    if(root->left) {
+        left_recur(root->left);
+    }else if(root->right) {
+        left_recur(root->right);
+    }
+
+    cout << root->val << " ";
 }
 
-void print_p(queue<pair<Node*,int>> q, int x) {
-    if(x < 0 || x > q.back().second) {
-        cout << "Invalid";
+void right_recur(Node* root) {
+    if(!root)
         return;
+
+    cout << root->val << " ";
+    
+    if(root->right) {
+        right_recur(root->right);
+    }else if(root->left) {
+        right_recur(root->left);
     }
-
-    while (!q.empty())
-    {
-        int nodeVal = q.front().first->val;
-        int level = q.front().second;
-        q.pop();
-
-        if(x == level)
-            cout << nodeVal << " ";
-    } 
 }
 
 int main ()
 {
     Node* root = input_tree();
-    queue<pair<Node*, int>> q = level_order(root);
-    int x;
-    cin >> x;
-    print_p(q, x);
+    
+    if(!root)
+        return 0;
+    
+    if(root->left)
+        left_recur(root->left);
+    
+    cout << root->val << " ";
+
+    if(root->right)
+        right_recur(root->right);
 
     return 0;
 }
