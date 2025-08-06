@@ -28,7 +28,7 @@ Node* input_trees() {
         q.push(root);
 
     while(!q.empty()) {
-        Node* top = q.front();
+        Node* front = q.front();
         q.pop();
 
         int l,r;
@@ -40,8 +40,8 @@ Node* input_trees() {
         if (r != -1)
             rn = new Node(r);
 
-        top->left = ln;
-        top->right = rn;
+        front->left = ln;
+        front->right = rn;
 
         if(ln)
             q.push(ln);
@@ -53,17 +53,44 @@ Node* input_trees() {
     
 }
 
-bool search(Node* root, int val) {
-    if(!root)
-        return false;
-    
-    if(root->val == val)
-        return true;
+void level_order(Node* root) {
+    queue<Node*> q;
+    q.push(root);
 
-    if(root->val > val){
-        return search(root->left, val);
-    }else {
-        return search(root->right, val);
+    while (!q.empty())
+    {
+        Node* front = q.front();
+        q.pop();
+
+        cout << front->val << " ";
+
+        if(front->left)
+            q.push(front->left);
+        
+        if(front->right)
+            q.push(front->right);
+    }
+    
+}
+
+void insert(Node* &root, int val) {
+    if(!root)
+        root = new Node(val);
+
+    if(root->val > val) {
+
+        if(!root->left)
+            root->left = new Node(val);
+        else
+            insert(root->left, val);
+
+    } else {
+
+        if(!root->right)
+            root->right = new Node(val);
+        else
+            insert(root->right, val);
+        
     }
 }
 
@@ -72,11 +99,10 @@ int main ()
     Node* root = input_trees();
     int val;
     cin >> val;
-    if(search(root, val)) {
-        cout << "Found!" << endl;
-    }else {
-        cout << "Not Found!" << endl;
-    }
+    level_order(root);
+    cout << endl;
+    insert(root, val);
+    level_order(root);
     
     return 0;
 }
