@@ -73,35 +73,32 @@ void level_order(Node* root) {
     
 }
 
-void insert(Node* &root, int val) {
-    if(!root)
-        root = new Node(val);
+Node* convert_to_BST(int a[], int n, int start, int end) {
+    if(start > end)
+        return NULL;
+    
+    int midI = (start+end)/2;
+    int midVal = a[midI];
+    Node* root = new Node(midVal);
+    Node* leftN = convert_to_BST(a, n, start, midI-1);
+    Node* rightN = convert_to_BST(a, n, midI+1, end);
 
-    if(root->val > val) {
-
-        if(!root->left)
-            root->left = new Node(val);
-        else
-            insert(root->left, val);
-
-    } else {
-
-        if(!root->right)
-            root->right = new Node(val);
-        else
-            insert(root->right, val);
-        
-    }
+    root->left = leftN;
+    root->right = rightN;
+    return root;
 }
 
 int main ()
 {
-    Node* root = input_trees();
-    int val;
-    cin >> val;
-    level_order(root);
-    cout << endl;
-    insert(root, val);
+    int n;
+    cin >> n;
+    int a[n];
+
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    Node* root = convert_to_BST(a, n, 0, n-1);
     level_order(root);
     
     return 0;
