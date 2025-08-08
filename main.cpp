@@ -3,21 +3,20 @@ using namespace std;
 
 int main ()
 {
-    // max priority queue
-    priority_queue<int> p1;
-    // min priority queue
-    priority_queue<int, vector<int>, greater<int>> p2;
+    map<string, int> mp;
+    mp["Sami"] = 3;
+    mp["Rafy"] = 0;
+    mp["Shadman"] = 100;
 
-    p1.push(10);
-    p1.push(20);
-    p1.push(30);
-
-    while (!p1.empty())
+    for (auto it = mp.begin(); it!=mp.end(); it++)
     {
-        cout << p1.top() << endl;
-        p1.pop();
+        cout << it->first << " has anger count of: " << it->second << endl;
     }
-    
+
+    if(mp.count("Patrick"))
+        cout << "Patrick is always Angry!" << endl;
+    else
+        cout << "Patrick Kobiraj is innocent!" << endl;
 
     return 0;
 }

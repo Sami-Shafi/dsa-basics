@@ -1,3 +1,4 @@
-30
-20
-10
+Rafy has anger count of: 0
+Sami has anger count of: 3
+Shadman has anger count of: 100
+Patrick Kobiraj is innocent!
