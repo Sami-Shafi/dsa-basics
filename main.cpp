@@ -1,40 +1,61 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// You will be given a sentence S that contains words with lowercase and uppercase English alphabets separated by spaces. You need to determine which word occurs the most times and also provide the count of that word.
+// You will be given a list A of size N. Then you will be given Q queries, for each query there will be some commands. Commands are given below -
 
-// Note: If there are multiple words that occur the most, print the first word that reaches the maximum count before others.
+// 0 X -> Insert X into the list. Then print the current minimum value from the list.
+// 1 -> Print the current minimum value from the list.
+// 2 -> Delete the current minimum value from the list and print the minimum value from the list after deletion.
+// Note: If the list is empty and you can't print anything then you should print "Empty".
 
 // Input Format
-// First line will contain T, the number of test cases.
-// Each test case will contain the sentence S.
+// First line will contain N.
+// Second line will contain the list A of size N.
+// Third line will contain Q.
+// Next Q lines will contain the commands.
 
 int main ()
 {
+    int size;
+    cin >> size;
+    priority_queue<int, vector<int>, greater<int>> pq;
+
+    for (int i = 0; i < size; i++)
+    {
+        int val;
+        cin >> val;
+        pq.push(val);
+    }
+
     int T;
     cin >> T;
-    cin.ignore();
 
     while (T--)
     {
-        string sentence;
-        getline(cin, sentence);
+        int cmd;
+        cin >> cmd;
 
-        stringstream ss(sentence);
-        map<string, int> mp;
-        string word;
-        int maxCt = 0;
-        string maxWord;
-        while (ss >> word)
-        {
-            mp[word]++;
-            if(mp[word] > maxCt) {
-                maxCt++;
-                maxWord = word;
+        if(cmd != 0 && cmd != 1 && cmd != 2) continue;
+
+        if(cmd == 0){
+            int x;
+            cin >> x;
+            pq.push(x);
+        }
+
+        if(cmd == 2){
+            if(!pq.empty()) 
+                pq.pop();
+            else {
+                cout << "Empty" << endl;
+                continue;
             }
         }
 
-        cout << maxWord << " " << maxCt << endl;
+        if(!pq.empty())
+            cout << pq.top() << endl;
+        else
+            cout << "Empty" << endl;
     }
         
     return 0;
