@@ -1,43 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// You will be given a list A of type pairs. Each pair will contain one string S and one unique integer I. The string will contain only English lowercase alphabets and no spaces.
+// You will be given a sentence S that contains words with lowercase and uppercase English alphabets separated by spaces. You need to determine which word occurs the most times and also provide the count of that word.
 
-// You need to sort the pairs according to the string values in ascending order. If there are multiple pairs with the same string, you need to sort them according to the integer value in descending order.
+// Note: If there are multiple words that occur the most, print the first word that reaches the maximum count before others.
 
 // Input Format
-// First line will contain N, the size of the list A.
-// Next N lines will contain pairs of string S and integer I.
-
-bool custom(pair<string, int> l, pair<string, int> r) {
-    if(l.first == r.first)
-        return l.second > r.second;
-    return l.first < r.first;
-}
+// First line will contain T, the number of test cases.
+// Each test case will contain the sentence S.
 
 int main ()
 {
-    int n;
-    cin >> n;
-    vector<pair<string, int>> v; 
-    
-    for (int i = 0; i < n; i++)
-    {
-        string name;
-        int count;
-        cin >> name >> count;
+    int T;
+    cin >> T;
+    cin.ignore();
 
-        v.push_back({name, count});
-    }
-
-    sort(v.begin(), v.end(), custom);
-    
-    for (auto p : v)
+    while (T--)
     {
-        cout << p.first << " " << p.second << endl;
+        string sentence;
+        getline(cin, sentence);
+
+        stringstream ss(sentence);
+        map<string, int> mp;
+        string word;
+        int maxCt = 0;
+        string maxWord;
+        while (ss >> word)
+        {
+            mp[word]++;
+            if(mp[word] > maxCt) {
+                maxCt++;
+                maxWord = word;
+            }
+        }
+
+        cout << maxWord << " " << maxCt << endl;
     }
-    
-    cout << endl;
         
     return 0;
 }

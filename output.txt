@@ -1,7 +1,2 @@
-afia 1
-rakib 3
-sakib 6
-sakib 5
-sakib 4
-tasfia 2
-
+piyush 2
+papa 3
