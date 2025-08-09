@@ -1,38 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// You will be given a list A of size N. You need to sort those values in ascending order and also you need to remove any duplicate values from the list and print the final outcome.
+// You will be given a list A of type pairs. Each pair will contain one string S and one unique integer I. The string will contain only English lowercase alphabets and no spaces.
+
+// You need to sort the pairs according to the string values in ascending order. If there are multiple pairs with the same string, you need to sort them according to the integer value in descending order.
 
 // Input Format
-// First line will contain T, the number of test cases.
-// The first line of every test case will contain N.
-// The second line of every test case will contain the list A of size N.
+// First line will contain N, the size of the list A.
+// Next N lines will contain pairs of string S and integer I.
+
+bool custom(pair<string, int> l, pair<string, int> r) {
+    if(l.first == r.first)
+        return l.second > r.second;
+    return l.first < r.first;
+}
 
 int main ()
 {
-    int T;
-    cin >> T;
-
-    while (T--)
+    int n;
+    cin >> n;
+    vector<pair<string, int>> v; 
+    
+    for (int i = 0; i < n; i++)
     {
-        int n;
-        cin >> n;
+        string name;
+        int count;
+        cin >> name >> count;
 
-        set<int> s;
-        for (int i = 0; i < n; i++)
-        {
-            int val;
-            cin >> val;
-            s.insert(val);
-        }
+        v.push_back({name, count});
+    }
 
-        for (auto x : s)
-            cout << x << " ";
-
-        cout << endl;        
-        
+    sort(v.begin(), v.end(), custom);
+    
+    for (auto p : v)
+    {
+        cout << p.first << " " << p.second << endl;
     }
     
+    cout << endl;
         
     return 0;
 }
