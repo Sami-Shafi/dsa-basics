@@ -3,20 +3,27 @@ using namespace std;
 
 int main ()
 {
-    map<string, int> mp;
-    mp["Sami"] = 3;
-    mp["Rafy"] = 0;
-    mp["Shadman"] = 100;
+    set<int> s;
 
-    for (auto it = mp.begin(); it!=mp.end(); it++)
+    int n;
+    cin >> n;
+    while (n--)
     {
-        cout << it->first << " has anger count of: " << it->second << endl;
+        int val;
+        cin >> val;
+        s.insert(val);
     }
 
-    if(mp.count("Patrick"))
-        cout << "Patrick is always Angry!" << endl;
+    for (auto it = s.begin(); it!=s.end(); it++)
+    {
+        cout << *it << endl;
+    }
+    
+    int target = 10;
+    if(s.count(target))
+        cout << target << " is present" << endl;
     else
-        cout << "Patrick Kobiraj is innocent!" << endl;
-
+        cout << target << " is not present" << endl;
+        
     return 0;
 }
