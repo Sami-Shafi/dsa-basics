@@ -5,25 +5,20 @@ int main() {
     
     int n, e;
     cin >> n >> e;
-    vector<int> adj_list[n];
+    vector<pair<int, int>> edge_list;
 
     for (int i = 0; i < e; i++)
     {
         int a, b;
         cin >> a >> b;
-        adj_list[a].push_back(b);
-        // remove for directed graph
-        adj_list[b].push_back(a);
+        edge_list.push_back({a, b});
     }
 
-    for (int i = 0; i < n; i++)
+    for (auto p : edge_list)
     {
-        cout << i << " -> ";
-
-        for (int x : adj_list[i])
-            cout << x << " ";
-        cout << endl;
+        cout << "{ " << p.first << ", " << p.second << " }" << endl;
     }
+    
     
     return 0;
 }
